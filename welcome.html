@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokemonGenerator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Pokemon Generator</h1>
+        <form action="/run-model" method="POST">
+            <label for="prompt">Prompt</label>
+            <input type="text" id="prompt" name="prompt" value="">
+            
+            <label for="primary_type">Primary Type</label>
+            <select id="primary_type" name="primary_type" onchange="handleTypeChange()">
+                <option value="normal">Normal</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="electric">Electric</option>
+                <option value="ice">Ice</option>
+                <option value="fighting">Fighting</option>
+                <option value="poison">Poison</option>
+                <option value="ground">Ground</option>
+                <option value="flying">Flying</option>
+                <option value="psychic">Psychic</option>
+                <option value="bug">Bug</option>
+                <option value="rock">Rock</option>
+                <option value="ghost">Ghost</option>
+                <option value="dragon">Dragon</option>
+                <option value="dark">Dark</option>
+                <option value="steel">Steel</option>
+                <option value="fairy">Fairy</option>
+            </select>
+
+            <label for="secondary_type">Secondary Type</label>
+            <select id="secondary_type" name="secondary_type" onchange="handleTypeChange()">
+                <option value="none">None</option> <!-- Option for no secondary type -->
+                <option value="normal">Normal</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="electric">Electric</option>
+                <option value="ice">Ice</option>
+                <option value="fighting">Fighting</option>
+                <option value="poison">Poison</option>
+                <option value="ground">Ground</option>
+                <option value="flying">Flying</option>
+                <option value="psychic">Psychic</option>
+                <option value="bug">Bug</option>
+                <option value="rock">Rock</option>
+                <option value="ghost">Ghost</option>
+                <option value="dragon">Dragon</option>
+                <option value="dark">Dark</option>
+                <option value="steel">Steel</option>
+                <option value="fairy">Fairy</option>
+            </select>    
+            <button type="submit">Create Pokemon</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to handle disabling duplicate type selection
+        function handleTypeChange() {
+            const primaryType = document.getElementById('primary_type').value;
+            const secondaryTypeSelect = document.getElementById('secondary_type');
+            const options = secondaryTypeSelect.options;
+
+            // Loop through secondary type options
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === primaryType) {
+                    options[i].disabled = true; // Disable if it's the same as the primary type
+                } else {
+                    options[i].disabled = false; // Enable other options
+                }
+            }
+        }
+
+        // Initial call to disable same type at page load
+        window.onload = handleTypeChange;
+    </script>
+</body>
+</html>
